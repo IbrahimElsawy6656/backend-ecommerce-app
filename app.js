@@ -7,7 +7,7 @@ const sessions = require('express-session');
 var cors = require("cors");
 
 const corsOptions = {
-  origin: "https://frontend-ecommerce-app.herokuapp.com",
+  origin: "https://frontend-ecommerce-app.herokuapp.com", // "http://localhost:3000"
   method: ["GET", "POST"],
   credentials: true,            //access-control-allow-credentials:true
   optionSuccessStatus: 200,
