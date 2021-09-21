@@ -25,11 +25,11 @@ var app = express();
 
 app.set('trust proxy', 1);
 app.use(sessions({
-  secret: "thisismysecrctekeyfhrgfgrfrty84",
+  secret: "thisismysecrctekeyfhrgf",
   saveUninitialized: true,
   cookie: {
     secure: true,
-    maxAge: 1000 * 60 * 60 * 24 * 7
+    maxAge: oneDay
   },
   resave: false
 }));
@@ -41,6 +41,12 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', "https://frontend-ecommerce-app.herokuapp.com");
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 app.use('/users', usersRouter);
 app.use('/orders', ordersRouter);
