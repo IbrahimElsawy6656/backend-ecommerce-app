@@ -23,10 +23,13 @@ var productsRouter = require('./routes/products')
 
 var app = express();
 
+app.enable('trust proxy');
 app.set('trust proxy', 1);
+
 app.use(sessions({
   secret: "thisismysecrctekeyfhrgf",
   saveUninitialized: true,
+  proxy: true,
   cookie: {
     secure: true,
     maxAge: oneDay
